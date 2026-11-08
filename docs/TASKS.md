@@ -7,7 +7,7 @@ Milestones are strictly ordered; do not start one until the previous milestone's
 ## Progress
 | Milestone | Branch | Tasks done | Audit |
 |---|---|---|---|
-| M0 Scaffold | `m0-scaffold` | 0/8 | [M0](audit/M0.md) |
+| M0 Scaffold | `m0-scaffold` | 8/8 | [M0](audit/M0.md) |
 | M1 Profile + answer bank | `m1-profile` | 0/10 | [M1](audit/M1.md) |
 | M2 Extraction | `m2-extraction` | 0/14 | [M2](audit/M2.md) |
 | M3 Mapping + fill (MVP) | `m3-mapping-fill` | 0/13 | [M3](audit/M3.md) |
@@ -32,14 +32,14 @@ Goal: `pnpm dev` runs both apps and the panel shows server status. (Spec §16)
 
 | ID | Task | Spec | Req | Status | Evidence |
 |---|---|---|---|---|---|
-| M0-01 | pnpm workspace root, strict `tsconfig.base`, verify `.gitignore` covers `.env`, `*.db`, `data/`; record Node/pnpm versions | §3, §4 | R5 | todo | |
-| M0-02 | `packages/shared`: zod schemas + inferred types for Profile, Answer, FieldRecord (incl. §6.2.1 signals), FillDecision/FillPlan, Settings (incl. caps), sensitive-key constant | §5 | F4, F11, F13 | todo | |
-| M0-03 | `apps/server`: Fastify, bind `127.0.0.1`, token generation + `X-Autofill-Token` hook, CORS to extension origin, `/health`, typed config loader (model IDs, port, data dir), `.env.example` | §13, §17 | R3, R6 | todo | |
-| M0-04 | `apps/extension`: WXT MV3, background SW, side panel (React + Tailwind), minimal permissions, `Alt+Shift+F` command, toolbar-click opens panel | §11, §14 | | todo | |
-| M0-05 | Panel: token entry (stored in `chrome.storage`), server status indicator | §11 | | todo | |
-| M0-06 | ESLint + Prettier, Vitest, root scripts (`dev`, `dev:ext`, `dev:server`, `build`, `test`, `test:e2e`, `eval`, `lint`, `typecheck`, `db:migrate`) | CLAUDE.md | | todo | |
-| M0-07 | CI workflow: lint + typecheck + unit tests | §16 | | todo | |
-| M0-08 | Guard test: assert Anthropic SDK is not imported anywhere under `apps/extension` | §14 | R3 | todo | |
+| M0-01 | pnpm workspace root, strict `tsconfig.base`, verify `.gitignore` covers `.env`, `*.db`, `data/`; record Node/pnpm versions | §3, §4 | R5 | done | `pnpm-workspace.yaml`, `tsconfig.base.json` (strict); `git check-ignore` confirms `.env`, `*.db`, `data/` ignored. Node v24.21.0, pnpm 10.12.1; TypeScript pinned ~6.0.3 (D-018) |
+| M0-02 | `packages/shared`: zod schemas + inferred types for Profile, Answer, FieldRecord (incl. §6.2.1 signals), FillDecision/FillPlan, Settings (incl. caps), sensitive-key constant | §5 | F4, F11, F13 | done | `packages/shared/src/index.ts`; `index.test.ts` (5 tests) |
+| M0-03 | `apps/server`: Fastify, bind `127.0.0.1`, token generation + `X-Autofill-Token` hook, CORS to extension origin, `/health`, typed config loader (model IDs, port, data dir), `.env.example` | §13, §17 | R3, R6 | done | `apps/server/src/{config,token,app,index}.ts`; `app.test.ts` (10 tests: 200/401/403, CORS, loopback bind, 0600 token); live curl: 401 / 200 / 403, `ss` shows `127.0.0.1:4317` |
+| M0-04 | `apps/extension`: WXT MV3, background SW, side panel (React + Tailwind), minimal permissions, `Alt+Shift+F` command, toolbar-click opens panel | §11, §14 | | done | `pnpm build` manifest has exactly activeTab, scripting, sidePanel, storage + `http://127.0.0.1/*`; Chromium reports command `open-panel` = Alt+Shift+F |
+| M0-05 | Panel: token entry (stored in `chrome.storage`), server status indicator | §11 | | done | `server-status.test.ts` (3 tests); real Chromium run of built extension: no token / bad token / good token show "Paste the server token…" / "Token rejected…" / "Server connected" |
+| M0-06 | ESLint + Prettier, Vitest, root scripts (`dev`, `dev:ext`, `dev:server`, `build`, `test`, `test:e2e`, `eval`, `lint`, `typecheck`, `db:migrate`) | CLAUDE.md | | done | All scripts in root `package.json`; `scripts/not-yet.mjs` placeholders for `test:e2e` (M3-11), `eval` (M3-12), `db:migrate` (M1-01); lint, typecheck, test, build green |
+| M0-07 | CI workflow: lint + typecheck + unit tests | §16 | | done | `.github/workflows/ci.yml` (lint, typecheck, test). Not yet run on GitHub (no remote push) |
+| M0-08 | Guard test: assert Anthropic SDK is not imported anywhere under `apps/extension` | §14 | R3 | done | `tests/guards/no-sdk-in-extension.test.ts` (2 tests) |
 
 ## M1 — Profile + answer bank
 Goal: uploading a resume yields an editable profile that round-trips through SQLite.

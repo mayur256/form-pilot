@@ -19,3 +19,6 @@
 | D-015 | 2026-11-08 | Token caps expressed in tokens, not USD; defaults tuned after measured runs | Simple, model-price independent | SPEC §5.5 |
 | D-016 | 2026-11-08 | LinkedIn/Naukri automation accepted for personal use; their fixtures live in gitignored `tests/fixtures/private/`, excluded from open-source release | ToS risk and PII | .gitignore, M2-12 |
 | D-017 | 2026-11-08 | Use latest Node, pnpm, Chromium/Playwright | Owner preference | M0-01 |
+| D-018 | 2026-11-08 | TypeScript pinned to ~6.0.3 (not latest 7.x) | `typescript-eslint` 8.72 throws "does not support TS 7.0"; exception to D-017 "latest" | M0-01, lint |
+| D-019 | 2026-11-08 | WXT `webExt.disabled: true`; dev build loaded manually into real Chrome | Auto-launch opens a fresh profile with no logged-in sessions, contrary to the project premise | M0-04, README |
+| D-020 | 2026-11-08 | Server rejects non-loopback `Host` headers (403) and requires token on every route incl. `/health` | DNS-rebinding defense; SPEC §13 "all routes" | M0-03, SPEC §13 |
