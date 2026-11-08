@@ -150,3 +150,11 @@ vite.config.ts.timestamp-*
 
 # Private fixtures (LinkedIn/Naukri, contain PII / ToS-sensitive)
 tests/fixtures/private/
+
+# Job Autofill: local data and build output (never commit)
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+data/
+.wxt/
