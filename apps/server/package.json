@@ -1,0 +1,19 @@
+{
+  "name": "@job-autofill/server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "build": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.4.1",
+    "@job-autofill/shared": "workspace:*",
+    "dotenv": "^18.0.9",
+    "fastify": "^5.12.8",
+    "zod": "^4.6.7"
+  }
+}
