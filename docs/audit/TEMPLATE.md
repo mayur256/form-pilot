@@ -1,0 +1,30 @@
+# Audit — M<N> <name>
+
+- Opened: YYYY-MM-DD
+- Closed: YYYY-MM-DD | open
+- Commit range: `<from>..<to>`
+
+## Acceptance criteria (SPEC §16)
+| # | Criterion | Evidence (command / test / commit) | Pass |
+|---|---|---|---|
+| 1 | | | ☐ |
+
+## Hard-rule audit (CLAUDE.md)
+| Rule | Check performed | Result |
+|---|---|---|
+| 1 No auto-submit; guard covered by test | | ☐ |
+| 2 No fabricated data; options exact | | ☐ |
+| 3 API key only in server `.env`; no SDK in extension | | ☐ |
+| 4 No raw HTML to LLM | | ☐ |
+| 5 No real personal data / `.env` / `*.db` / `data/` committed | | ☐ |
+| 6 Model IDs from config/env | | ☐ |
+| 7 No CAPTCHA solving / evasion | | ☐ |
+
+## Gate
+- [ ] `pnpm lint` · [ ] `pnpm typecheck` · [ ] `pnpm test` · [ ] `pnpm test:e2e` (if applicable)
+
+## Deviations from spec
+_None._
+
+## Open issues carried forward
+_None._
