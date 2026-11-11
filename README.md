@@ -15,7 +15,9 @@ cp apps/server/.env.example apps/server/.env   # add ANTHROPIC_API_KEY
 pnpm db:migrate
 pnpm dev
 ```
-Load `apps/extension/.output/chrome-mv3` as an unpacked extension (`chrome://extensions` → Developer mode → Load unpacked). Open the side panel, paste the server token printed in the terminal, upload your resume, and fill in the answer bank.
+Load `apps/extension/.output/chrome-mv3-dev` (from `pnpm dev`) or `apps/extension/.output/chrome-mv3` (from `pnpm build`) as an unpacked extension (`chrome://extensions` → Developer mode → Load unpacked). It loads into your real Chrome profile, not a throwaway one. Open the side panel (toolbar icon or `Alt+Shift+F`), paste the server token (printed when the server starts; also saved at `apps/server/data/token`), upload your resume, and fill in the answer bank.
+
+> Status: milestone M0 (scaffold). `pnpm db:migrate`, `pnpm test:e2e` and `pnpm eval` are placeholders until M1/M3. See `docs/TASKS.md`.
 
 ## Supported platforms
 Generic engine works on most forms. Dedicated adapters (in progress): Greenhouse, Lever, Ashby, Workday, iCIMS, SmartRecruiters, LinkedIn Easy Apply, Naukri, Taleo, SuccessFactors.

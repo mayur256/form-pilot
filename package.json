@@ -1,0 +1,32 @@
+{
+  "name": "job-autofill",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.12.1",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter \"./apps/*\" dev",
+    "dev:ext": "pnpm --filter @job-autofill/extension dev",
+    "dev:server": "pnpm --filter @job-autofill/server dev",
+    "build": "pnpm -r build",
+    "test": "vitest run",
+    "test:e2e": "node scripts/not-yet.mjs test:e2e M3-11",
+    "eval": "node scripts/not-yet.mjs eval M3-12",
+    "db:migrate": "node scripts/not-yet.mjs db:migrate M1-01",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "pnpm -r typecheck && tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6",
+    "eslint": "^10.14.0",
+    "prettier": "^3.9.10",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.1.0"
+  }
+}
